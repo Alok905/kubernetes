@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+  labels:
+    tier: frontend
+    app: dep-nginx
+spec:
+  selector:
+    matchLabels:
+      app: myapp
+  replicas: 3
+  template:
+    metadata:
+      # name is ignored when created by 
+      #       deployment or replicaset
+      name: myapp-pod 
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: nginx
+          # image: nginx:1.30
+          image: nginx:1.30-perl
+          # image: nginx:1.29-perl
+          # image: nginx:err
+
+# kubectl rollout status deployment myapp-deployment
+# kubectl rollout history deployment myapp-deployment
