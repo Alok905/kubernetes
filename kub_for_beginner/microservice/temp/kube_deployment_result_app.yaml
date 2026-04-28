@@ -3,20 +3,19 @@ kind: Deployment
 metadata:
   name: result-deployment
   labels:
-    app: result-deployment
+    app: result-app
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: result
+      app: result-app
   template:
     metadata:
       labels:
-        app: result
+        app: result-app
     spec:
       containers:
-        - name: result-container
+        - name: result-app
           image: kodekloud/examplevotingapp_result:v1
           ports:
             - containerPort: 80
-              name: result-app-port

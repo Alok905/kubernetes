@@ -3,11 +3,11 @@ kind: Service
 metadata:
   name: db
   labels:
-    app: postgres-service
+    app-service: db-service
 spec:
   type: ClusterIP
   selector:
     app: postgres
   ports:
-    - port: 5432
-      targetPort: 5432
+    - port: 5432  # because apps are using 5432 port to connect to postgres
+      targetPort: postgres-port

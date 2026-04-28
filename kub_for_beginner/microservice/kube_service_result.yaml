@@ -3,12 +3,14 @@ kind: Service
 metadata:
   name: result-service
   labels:
-    app: result-service
+    app-service: result-service
 spec:
   type: NodePort
   selector:
-    app: result-app
+    app: result
   ports:
-    - port: 80
-      targetPort: 80
-      nodePort: 30005
+    - nodePort: 30001
+      # anything can be given because it is just a passthrough between the external incoming traffic (port 30001) and the pod's port (80)
+      # NodePort service is not used for internal communication; but in case if it is being used, then this port cannot be randomly because it is being used by the apps.
+      port: 4567
+      targetPort: result-app-port

@@ -3,9 +3,9 @@ kind: Deployment
 metadata:
   name: postgres-deployment
   labels:
-    app: postgres-deployment
+    app: postgres
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: postgres
@@ -15,13 +15,12 @@ spec:
         app: postgres
     spec:
       containers:
-        - name: postgres-container
+        - name: postgres
           image: postgres
           ports:
             - containerPort: 5432
-              name: postgres-port
           env:
-            - name: POSTGRES_USER
-              value: "postgres"
-            - name: POSTGRES_PASSWORD
-              value: "postgres"
+          - name: POSTGRES_USER
+            value: "postgres"
+          - name: POSTGRES_PASSWORD
+            value: "postgres"
